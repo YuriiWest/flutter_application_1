@@ -3,18 +3,20 @@ import './fact_page.dart';
 import './form_body.dart';
 
 void main() =>
-    runApp(MaterialApp(debugShowCheckedModeBanner: false, home: MyApp()));
+    runApp(const MaterialApp(debugShowCheckedModeBanner: false, home: MyApp()));
 // without MaterialApp causing "Navigator operation requested with a context
 // that does not include a Navigator" error. Work on this isssue is in progress...
 
 class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
   void _showFact() {
-    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (buildContext) {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
@@ -22,7 +24,7 @@ class _MyAppState extends State<MyApp> {
               title: const Text('Your cat fact is...'),
               backgroundColor: Colors.orange[600],
             ),
-            body: Padding(
+            body: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                 child: Fact())),
       );
@@ -31,21 +33,21 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: new Scaffold(
+      home: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text('CatFact app'),
+          title: const Text('CatFact app'),
           backgroundColor: Colors.orange[600],
           actions: <Widget>[
             IconButton(
-              icon: Icon(Icons.list),
+              icon: const Icon(Icons.list),
               onPressed: _showFact,
             )
           ],
         ),
-        body: MyCustomForm(),
+        body: const MyCustomForm(),
       ),
     );
   }

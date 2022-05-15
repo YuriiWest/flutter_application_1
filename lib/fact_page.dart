@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:http/http.dart';
 
 class Fact extends StatefulWidget {
+  const Fact({Key? key}) : super(key: key);
+
   @override
   FactState createState() => FactState();
 }
@@ -23,7 +25,7 @@ class FactState extends State<Fact> {
   }
 
   void greeting() {
-    Text('Press the button!');
+    const Text('Press the button!');
   }
 
   @override

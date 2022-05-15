@@ -15,7 +15,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          Padding(
+          const Padding(
             padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
             child: TextField(
               decoration: InputDecoration(
@@ -25,7 +25,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
             ),
           ),
           Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
               child: OutlinedButton(
                   //making text under button visible when onPressed is triggered
                   onPressed: () {
@@ -35,16 +35,16 @@ class _MyCustomFormState extends State<MyCustomForm> {
                   },
                   style: OutlinedButton.styleFrom(
                       primary: Colors.orange[500],
-                      shape: StadiumBorder(),
+                      shape: const StadiumBorder(),
                       fixedSize: const Size(300, 80),
                       textStyle: const TextStyle(fontSize: 24)),
-                  child: Text('Get a cat fact'))),
+                  child: const Text('Get a cat fact'))),
           Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
               child: Visibility(
                   visible:
                       _factPointer, //making text visible with onPressed func
-                  child: Text("Your cat fact is on the other page!"))),
+                  child: const Text("Your cat fact is on the other page!"))),
         ],
       ),
     );
