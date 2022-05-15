@@ -26,8 +26,8 @@ class MyCustomForm extends StatefulWidget {
 
 class _MyCustomFormState extends State<MyCustomForm> {
   TextEditingController likingController = TextEditingController();
+  bool _factPointer = false;
   Widget build(BuildContext context) {
-    bool _factPointer = false;
     return new Scaffold(
       body: new Container(
         child: new Column(
@@ -44,14 +44,12 @@ class _MyCustomFormState extends State<MyCustomForm> {
               ),
             ),
             new OutlinedButton(
-                //tried to make a text appear after pressing the button. Didn't work out :(
-                //so I changed factPointer to 'true' on declaring "visible" tag for Text
-                onPressed: () => {
-                      setState(() {
-                        _factPointer = true;
-                        print(_factPointer);
-                      })
-                    },
+                //making under button visible when onPressed is triggered
+                onPressed: () {
+                  setState(() {
+                    _factPointer = true;
+                  });
+                },
                 style: OutlinedButton.styleFrom(
                     primary: Colors.orange[500],
                     shape: StadiumBorder(),
@@ -62,12 +60,9 @@ class _MyCustomFormState extends State<MyCustomForm> {
               return new Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                   child: new Visibility(
-                      //supposed to make the text visible after pressing the button
-                      visible: _factPointer,
+                      visible:
+                          _factPointer, //making text visible with onPressed func
                       child: new Text("Your cat fact is on the other page!")));
-            }),
-            Builder(builder: (context) {
-              return Text('Your cat fact is on the other page!');
             }),
           ],
         ),
