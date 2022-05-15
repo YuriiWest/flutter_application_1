@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_new
-
 import 'package:flutter/material.dart';
 import './fact_page.dart';
 import './form_body.dart';
@@ -29,12 +27,6 @@ class _MyAppState extends State<MyApp> {
                 child: Fact())),
       );
     }));
-  }
-
-  void greet() {
-    setState(() {
-      bool greeting = true;
-    });
   }
 
   @override
