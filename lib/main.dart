@@ -2,70 +2,58 @@
 
 import 'package:flutter/material.dart';
 import './fact_page.dart';
+import './form_body.dart';
 
-void main() => runApp(MyApp());
+void main() =>
+    runApp(MaterialApp(debugShowCheckedModeBanner: false, home: MyApp()));
+// without MaterialApp causing "Navigator operation requested with a context
+// that does not include a Navigator" error. Work on this isssue is in progress...
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  void _showFact() {
+    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext) {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+            appBar: AppBar(
+              title: const Text('Your cat fact is...'),
+              backgroundColor: Colors.orange[600],
+            ),
+            body: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                child: Fact())),
+      );
+    }));
+  }
+
+  void greet() {
+    setState(() {
+      bool greeting = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
       debugShowCheckedModeBanner: false,
       home: new Scaffold(
-        body: Fact(),
-      ),
-    );
-  }
-}
-
-class MyCustomForm extends StatefulWidget {
-  const MyCustomForm({Key? key}) : super(key: key);
-
-  @override
-  _MyCustomFormState createState() => new _MyCustomFormState();
-}
-
-class _MyCustomFormState extends State<MyCustomForm> {
-  TextEditingController likingController = TextEditingController();
-  bool _factPointer = false;
-  Widget build(BuildContext context) {
-    return new Scaffold(
-      body: new Container(
-        child: new Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-              child: TextField(
-                controller: likingController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Do you like cats?',
-                ),
-              ),
-            ),
-            new OutlinedButton(
-                //making under button visible when onPressed is triggered
-                onPressed: () {
-                  setState(() {
-                    _factPointer = true;
-                  });
-                },
-                style: OutlinedButton.styleFrom(
-                    primary: Colors.orange[500],
-                    shape: StadiumBorder(),
-                    fixedSize: const Size(300, 80),
-                    textStyle: const TextStyle(fontSize: 24)),
-                child: Text('Get a cat fact')),
-            Builder(builder: (context) {
-              return new Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                  child: new Visibility(
-                      visible:
-                          _factPointer, //making text visible with onPressed func
-                      child: new Text("Your cat fact is on the other page!")));
-            }),
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text('CatFact app'),
+          backgroundColor: Colors.orange[600],
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.list),
+              onPressed: _showFact,
+            )
           ],
         ),
+        body: MyCustomForm(),
       ),
     );
   }
